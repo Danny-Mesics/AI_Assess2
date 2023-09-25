@@ -11,22 +11,28 @@ int main(int argc, char* argv[])
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    int screenWidth = 800;
-    int screenHeight = 450;
+    int screenWidth = 1100;
+    int screenHeight = 700;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
     std::vector<std::string> asciiMap;
-    asciiMap.push_back("000000000000");
-    asciiMap.push_back("010111011100");
-    asciiMap.push_back("010101110110");
-    asciiMap.push_back("010100000000");
-    asciiMap.push_back("010111111110");
-    asciiMap.push_back("010000001000");
-    asciiMap.push_back("011111111110");
-    asciiMap.push_back("000000000000");
+    asciiMap.push_back("0000000000000000000000");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0111111111111111111110");
+    asciiMap.push_back("0000000000000000000000");
 
     NodeMap nodeMap;
     nodeMap.Initialise(asciiMap, 50);
@@ -59,12 +65,10 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-        ClearBackground(RAYWHITE);
+        ClearBackground(BLACK);
 
         nodeMap.Draw();
         nodeMap.DrawPath();
-
-        DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------

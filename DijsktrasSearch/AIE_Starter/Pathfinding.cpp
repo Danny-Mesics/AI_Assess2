@@ -74,13 +74,25 @@ AIForGames::Node* AIForGames::NodeMap::GetNode(int x, int y)
 
 void AIForGames::NodeMap::Draw()
 {
-	// Red colour for the walls
+	// Purple colour for the walls
 	Color cellColor;
+	cellColor.r = 51;
+	cellColor.g = 51;
+	cellColor.b = 51;
 	cellColor.a = 255;
-	cellColor.r = 0;
-	cellColor.g = 0;
-	cellColor.b = 255;
-	Color lineColor = RED;
+
+	// differing greys for the boxes
+	Color firstBoxColor;
+	firstBoxColor.r = 73;
+	firstBoxColor.g = 28;
+	firstBoxColor.b = 208;
+	firstBoxColor.a = 255;
+
+	Color secondBoxColor;
+	secondBoxColor.r = 192;
+	secondBoxColor.g = 192;
+	secondBoxColor.b = 192;
+	secondBoxColor.a = 255;
 
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
@@ -88,20 +100,15 @@ void AIForGames::NodeMap::Draw()
 			if (node == nullptr) {
 				DrawRectangle((int)(x * cellSize), (int)(y * cellSize), (int)(cellSize - 1), (int)(cellSize - 1), cellColor);
 			}
-			else {
-				for (int i = 0; i < node->connections.size(); i++) {
-					Node* other = node->connections[i].target;
-					DrawLine((x + 0.5f) * cellSize, (y + 0.5f) * cellSize, (int)other->position.x, (int)other->position.y, lineColor);
-				}
-			}
+
 		}
 	}
 
 	if (path.empty()) return;
 
-	DrawRectangle((int)(path[0]->position.x - (cellSize / 2)), (int)(path[0]->position.y - (cellSize / 2)), (int)(cellSize - 1), (int)(cellSize - 1), MAGENTA);
+	DrawRectangle((int)(path[0]->position.x - (cellSize / 2)), (int)(path[0]->position.y - (cellSize / 2)), (int)(cellSize - 1), (int)(cellSize - 1), firstBoxColor);
 
-	DrawRectangle((int)(path[path.size()-1]->position.x - (cellSize / 2)), (int)(path[path.size() - 1]->position.y - (cellSize / 2)), (int)(cellSize - 1), (int)(cellSize - 1), GREEN);
+	DrawRectangle((int)(path[path.size() - 1]->position.x - (cellSize / 2)), (int)(path[path.size() - 1]->position.y - (cellSize / 2)), (int)(cellSize - 1), (int)(cellSize - 1), GRAY);
 
 }
 
@@ -191,7 +198,7 @@ std::vector<AIForGames::Node*> AIForGames::NodeMap::DijkstrasSearch(Node* start,
 void AIForGames::NodeMap::DrawPath()
 {
 	for (int i = 1; i < path.size(); i++) {
-		DrawLine(path[i]->position.x, path[i]->position.y, path[i - 1]->position.x, path[i - 1]->position.y, BLACK);
+		DrawLine(path[i]->position.x, path[i]->position.y, path[i - 1]->position.x, path[i - 1]->position.y, GREEN);
 	}
 }
 
