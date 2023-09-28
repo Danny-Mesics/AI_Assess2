@@ -154,6 +154,12 @@ std::vector<AIForGames::Node*> AIForGames::NodeMap::DijkstrasSearch(Node* start,
 		// Removes the top of the queue from the queue
 		openList.pop_back();
 
+		// Early out where if the node currently being processed is the end
+		// we immediately return the path
+		if (currentNode == end) {
+			break;
+		}
+
 		// Adds the currentNode to the closed list so we don't process again
 		closedList.push_back(currentNode);
 
@@ -162,9 +168,8 @@ std::vector<AIForGames::Node*> AIForGames::NodeMap::DijkstrasSearch(Node* start,
 
 			if (std::find(closedList.begin(), closedList.end(), currentNode->connections[i].target) == std::end(closedList)) {
 
+
 				float gscore = currentNode->gScore + currentNode->connections[i].cost;
-
-
 
 				if (std::find(openList.begin(), openList.end(), currentNode->connections[i].target) != std::end(openList)) {
 					// Node is already in the open list with a valid score
