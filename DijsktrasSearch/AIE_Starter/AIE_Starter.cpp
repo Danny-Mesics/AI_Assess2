@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     NodeMap nodeMap;
     nodeMap.Initialise(asciiMap, 50);
 
-    Node* start = nodeMap.GetNode(2, 2);
+    Node* start = nodeMap.GetNode(1, 1);
     Node* end = nodeMap.GetNode(20, 12);
     nodeMap.path = nodeMap.DijkstrasSearch(start, end);
 
